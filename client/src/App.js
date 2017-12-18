@@ -11,8 +11,6 @@ import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import ContentList from './components/ContentList'
 
-const fetch = {}
-
 class App extends Component {
   constructor () {
     super()
@@ -26,14 +24,15 @@ class App extends Component {
   }
 
   componentDidMount () {
-    fetch('/api/auth/verify', { credentials: 'include' })
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          auth: res.auth,
-          user: res.data.user
-        })
-      }).catch(err => console.log(err))
+    fetch('/api/auth/verify', {
+      credentials: 'include'
+    }).then(res => res.json())
+     .then(res => {
+       this.setState({
+         auth: res.auth,
+         user: res.data.user
+       })
+     }).catch(err => console.log(err))
   }
 
   handleLoginSubmit (e, data) {
@@ -46,18 +45,17 @@ class App extends Component {
       credentials: 'include',
       body: JSON.stringify(data)
     }).then(res => res.json())
-      .then(res => {
-        console.log(res)
-        this.setState({
-          auth: res.auth,
-          user: res.data.user
-        })
-      }).catch(err => console.log(err))
+     .then(res => {
+       console.log(res)
+       this.setState({
+         auth: res.auth,
+         user: res.data.user
+       })
+     }).catch(err => console.log(err))
   }
 
   handleRegisterSubmit (e, data) {
     e.preventDefault()
-    console.log(data)
     fetch('/api/auth/register', {
       method: 'POST',
       headers: {
@@ -66,13 +64,13 @@ class App extends Component {
       credentials: 'include',
       body: JSON.stringify(data)
     }).then(res => res.json())
-      .then(res => {
-        console.log(res)
-        this.setState({
-          auth: res.auth,
-          user: res.data.user
-        })
-      }).catch(err => console.log(err))
+    .then(res => {
+      console.log(res)
+      this.setState({
+        auth: res.auth,
+        user: res.data.user
+      })
+    }).catch(err => console.log(err))
   }
 
   logout () {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Content from '/Content'
-import ContentForm from '/ContentForm'
+import Content from './Content'
+import ContentForm from './ContentForm'
 
 class ContentList extends Component {
   constructor () {

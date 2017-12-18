@@ -1,7 +1,7 @@
+
 const express = require('express')
 const authRouter = express.Router()
-const passport = require('../.service/auth/local')
-const authHelpers = require('../services/auth/auth-helpers')
+const passport = require('../services/auth/local')
 const usersController = require('../controllers/users-controller')
 
 authRouter.post('/register', usersController.create)
@@ -22,8 +22,8 @@ authRouter.get('/verify', (req, res) => {
       }
     })
   } else {
-    return res.status(400).son({
-      message: 'Login failed',
+    return res.status(400).json({
+      message: 'login failed',
       auth: false,
       data: {
         user: null

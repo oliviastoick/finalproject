@@ -9,6 +9,7 @@ const passport = require('passport')
 const app = express()
 require('dotenv').config()
 
+app.use(cookieParser())
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -30,14 +31,31 @@ app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`)
 })
 
+// sends this message when rooth path is accessed
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  res.sendFile(path.join(__dirname, 'public', 'index.html'))
 })
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
+
+const authRoutes = require('./routes/auth-routes')
+app.use('/api/auth', authRoutes)
 
 // error handlers
-app.use('*', (req, res, err) => {
+
+app.use('*', (req, res) => {
   res.status(400).json({
+    message: 'Not Found!'
+  })
+})
+
+app.use((err, req, res, next) => {
+  console.log(err)
+  res.status(500).json({
     error: err,
     message: err.message
   })
 })
+
+module.exports = app
