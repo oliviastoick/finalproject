@@ -15,10 +15,10 @@ Content.findById = (id) => {
 Content.create = (content, userId) => {
   return db.one(`
     INSERT INTO content
-    (title, description, genre, user_id)
+    (title, description, url, user_id)
     VALUES ($1, $2, $3, $4)
     RETURNING *
-  `, [content.title, content.description, content.genre, userId])
+  `, [content.title, content.description, content.url, userId])
 }
 
 Content.update = (content, id) => {
@@ -26,10 +26,10 @@ Content.update = (content, id) => {
     UPDATE content SET
     title = $1,
     description = $2,
-    genre = $3
+    url = $3
     WHERE id = $4
     RETURNING *
-  `, [content.title, content.description, content.genre, id])
+  `, [content.title, content.description, content.url, id])
 }
 
 Content.destroy = (id) => {

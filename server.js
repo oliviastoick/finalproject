@@ -35,7 +35,7 @@ app.get('/', (req, res) => {
 })
 
 // error handlers
-app.use('*', (req, res) => {
+app.use('*', (req, res, err) => {
   res.status(400).json({
     error: err,
     message: err.message

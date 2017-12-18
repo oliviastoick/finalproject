@@ -9,6 +9,9 @@ import Home from './components/Home'
 import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
+import ContentList from './components/ContentList'
+
+const fetch = {}
 
 class App extends Component {
   constructor () {
@@ -106,6 +109,7 @@ class App extends Component {
                 ? <Redirect to='/login' />
                 : <Dashboard user={this.state.user} />
             )} />
+            <Route exact path='/content' render={() => <ContentList auth={this.state.auth} />} />
           </div>
           <Footer />
         </div>
