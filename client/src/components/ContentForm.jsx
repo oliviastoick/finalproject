@@ -40,7 +40,6 @@ class ContentForm extends Component {
         <input type='text' name='title' placeholder='title' value={this.state.title} onChange={this.handleChange} />
         <input type='text' name='description' placeholder='description' value={this.state.description} onChange={this.handleChange} />
         <input type='url' name='url' placeholder='img' value={this.state.genre} onChange={this.handleChange} />
-        <input type='submit' value='Submit' />
       </form>
     )
   }

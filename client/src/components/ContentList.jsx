@@ -90,6 +90,7 @@ class ContentList extends Component {
           ? <ContentForm isAdd handleFormSubmit={this.handleFormSubmit} />
           : ''}
         {this.renderContentList()}
+        <input type='submit' value='Submit' />
       </div>
     )
   }
