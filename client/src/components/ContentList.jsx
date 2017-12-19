@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 // import Content from './Content'
 import ContentForm from './ContentForm'
-import Content from './Content'
+// import Content from './Content'
 
 const fetch = window.fetch
 
@@ -9,7 +9,7 @@ class ContentList extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      content: [],
+      content: null,
       dataLoaded: false,
       auth: props.auth,
       currentlyEditing: null
@@ -29,7 +29,7 @@ class ContentList extends Component {
     fetch('/api/content', { credentials: 'include' })
      .then(res => res.json())
      .then(res => {
-       console.log(res)
+       console.log(res.data)
        this.setState({
          content: res.data.content,
          dataLoaded: true
@@ -79,12 +79,17 @@ class ContentList extends Component {
     if (this.state.dataLoaded) {
       console.log(this, 'this is from rendercontentlist')
       return this.state.content.map(content => {
-          return (
-            <div>
-                  <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
-                  <Content key={content.id} content={content} auth={this.state.auth} deleteContent={this.deleteContent} />
-            </div>
-                )
+        return (
+          <div>
+            <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
+            {this.auth
+              ? <div className='icon'>
+                <span className='edit' onClick={() => this.setEditing(content.id)}><i className='fa fa-pencil fa-fw fa-lg cursor' /></span>
+                <span className='delete' onClick={() => this.deleteContent(content.id)}><i className='fa fa-trash fa-fw fa-lg cursor' /></span>
+              </div>
+              : ''}
+          </div>
+        )
       })
     } else return <p>Loading...</p>
   }

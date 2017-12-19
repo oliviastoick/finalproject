@@ -113,7 +113,7 @@ class App extends Component {
             )} />
             <Route exact path='/content' render={() => <ContentList auth={this.state.auth} />} />
           </div>
-          <Content />
+          {/* <Content /> */}
           <Footer />
         </div>
       </Router>
