@@ -9,6 +9,7 @@ class ContentForm extends Component {
       description: props.content ? props.content.description : ''
     }
     this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange (e) {
@@ -17,6 +18,16 @@ class ContentForm extends Component {
     this.setState({
       [name]: value
     })
+  }
+
+  handleSubmit (method, e, data, id) {
+    e.preventDefault()
+    this.setState({
+      title: '',
+      url: '',
+      description: ''
+    })
+    this.props.handleFormSubmit(method, data, id)
   }
 
   render () {
@@ -29,7 +40,7 @@ class ContentForm extends Component {
         <input type='text' name='title' placeholder='title' value={this.state.title} onChange={this.handleChange} />
         <input type='text' name='description' placeholder='description' value={this.state.description} onChange={this.handleChange} />
         <input type='url' name='url' placeholder='img' value={this.state.genre} onChange={this.handleChange} />
-        <input type='submit' value={this.props.isAdd ? 'Add' : 'Edit it!'} />
+        <input type='submit' value='Submit' />
       </form>
     )
   }

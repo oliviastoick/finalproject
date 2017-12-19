@@ -10,6 +10,9 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import ContentList from './components/ContentList'
+import './App.css'
+
+const fetch = window.fetch
 
 class App extends Component {
   constructor () {

@@ -2,25 +2,35 @@ import React, { Component } from 'react'
 import Content from './Content'
 import ContentForm from './ContentForm'
 
+const fetch = window.fetch
+
 class ContentList extends Component {
-  constructor () {
-    super()
+  constructor (props) {
+    super(props)
     this.state = {
-      content: null,
-      dataLoaded: false
+      content: [],
+      dataLoaded: false,
+      auth: props.auth,
+      currentlyEditing: null
     }
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this)
+    this.deleteContent = this.deleteContent.bind(this)
+    this.setEditing = this.setEditing.bind(this)
+    this.getAllContent = this.getAllContent.bind(this)
   }
 
   componentDidMount () {
-    this.getAllMovies()
+    this.getAllContent()
   }
 
-  getAllMovies () {
-    fetch('/content', { credentials: 'include' })
+  getAllContent () {
+    fetch('/api/content', { credentials: 'include' })
      .then(res => res.json())
      .then(res => {
+       console.log(res)
        this.setState({
-         content: res.data.movies,
+         content: res.data,
          dataLoaded: true
        })
      }).catch(err => console.log(err))
@@ -28,7 +38,7 @@ class ContentList extends Component {
 
   handleFormSubmit (method, e, data, id) {
     e.preventDefault()
-    fetch(`/content/${id || ''}`, {
+    fetch(`api/content/${id || ''}`, {
       method: method,
       credentials: 'include',
       headers: {
@@ -39,14 +49,35 @@ class ContentList extends Component {
      .then(res => res.json())
      .then(res => {
        console.log(res)
+       this.setState({
+         currentlyEditing: null
+       })
        this.getAllContent()
      }).catch(err => console.log(err))
+  }
+
+  setEditing (id) {
+    this.setState({
+      currentlyEditing: id
+    })
+  }
+
+  deleteContent (id) {
+    fetch(`/api/content/${id}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    }).then(res => res.json())
+      .then(res => {
+        console.log(res)
+        this.getAllContent()
+      }).catch(err => console.log(err)
+    )
   }
 
   renderContentList () {
     if (this.state.dataLoaded) {
       return this.state.content.map(content => {
-        return <Content key={content.id} content={content} />
+        return <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
       })
     } else return <p>Loading...</p>
   }

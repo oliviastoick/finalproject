@@ -25,7 +25,7 @@ contentController.create = (req, res, next) => {
   Content.create({
     title: req.body.title,
     description: req.body.description,
-    genre: req.body.url
+    url: req.body.url
   }, req.user.id).then(content => {
     res.json({
       message: 'Post added successfully!',
@@ -38,11 +38,11 @@ contentController.update = (req, res, next) => {
   Content.update({
     title: req.body.title,
     description: req.body.description,
-    genre: req.body.url
-  }, req.params.id).then(movie => {
+    url: req.body.url
+  }, req.params.id).then(content => {
     res.json({
       message: 'Post updated successfully!',
-      data: { movie }
+      data: { content }
     })
   }).catch(next)
 }

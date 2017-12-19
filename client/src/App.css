@@ -1,28 +1,140 @@
-.App {
-  text-align: center;
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.logout {
+  cursor: pointer;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+	background-color: #ffe6ff;
+}
+
+footer {
+  background-color: #ffe6ff;
   color: white;
+	padding: 20px 0;
+  text-align: center;
+	width: 100vw;
 }
 
-.App-title {
-  font-size: 1.5em;
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+	align-items: center;
+	background-color: #001f3f;
+  font-family: 'Open Sans', sans-serif;
 }
 
-.App-intro {
-  font-size: large;
+nav {
+  background-color: white;
+  text-align: center;
+  border-bottom: 10px solid #001827;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+a {
+  color: inherit;
+  text-decoration: inherit;
 }
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-around;
+}
+
+li {
+  padding: 10px 1px;
+  background-color: white;
+  border: 3px solid white;
+}
+
+li:hover {
+  border-bottom: 7px solid #ffe6ff;
+	transition: all 0.15s;
+}
+
+.cursor {
+	cursor: pointer;
+}
+
+input {
+	width: 100%;
+	padding: 10px 20px;
+	margin: 8px 0;
+	box-sizing: border-box;
+	font-size: 15px;
+	background-color: white;
+  color: black;
+  border: 2px solid #001827;
+	/*visibility: hidden;*/
+	/*display: none;*/
+}
+
+input[type=text]:hover, input[type=text]:focus {
+	border-color: lightgrey;
+}
+
+.form [type='submit'] {
+	width: 100px;
+	/*display: flex;*/
+	position: center;
+	text-align: center;
+	cursor: pointer;
+}
+
+i:hover {
+	color: #ffe6ff;
+	transition: all 0.15s;
+}
+
+
+
+/*@media screen and (min-width: 650px) {
+	main {
+		width: 100%;
+		align-items: center;
+	}
+
+	.formatted {
+		width: 600px;
+	}
+
+	ul {
+		max-width: 600px;
+		justify-content: center;
+		margin: 0 auto;
+	}
+
+	ul li {
+		padding-left: 30px;
+		padding-right: 30px;
+	}*/

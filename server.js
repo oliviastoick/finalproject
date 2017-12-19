@@ -43,12 +43,16 @@ const authRoutes = require('./routes/auth-routes')
 app.use('/api/auth', authRoutes)
 
 // error handlers
+const contentRoutes = require('./routes/content-routes');
+app.use('/api/content', contentRoutes);
+
 
 app.use('*', (req, res) => {
   res.status(400).json({
     message: 'Not Found!'
   })
 })
+
 
 app.use((err, req, res, next) => {
   console.log(err)
