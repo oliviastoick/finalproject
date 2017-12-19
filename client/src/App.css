@@ -52,12 +52,14 @@ footer {
 	align-items: center;
 	background-color: #001f3f;
   font-family: 'Open Sans', sans-serif;
+  color: #FFFFFF;
 }
 
 nav {
   background-color: white;
   text-align: center;
   border-bottom: 10px solid #001827;
+  color: black;
 }
 
 a {

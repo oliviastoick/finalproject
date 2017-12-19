@@ -10,6 +10,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Dashboard from './components/Dashboard'
 import ContentList from './components/ContentList'
+import Content from './components/Content'
 import './App.css'
 
 const fetch = window.fetch
@@ -112,6 +113,7 @@ class App extends Component {
             )} />
             <Route exact path='/content' render={() => <ContentList auth={this.state.auth} />} />
           </div>
+          <Content />
           <Footer />
         </div>
       </Router>

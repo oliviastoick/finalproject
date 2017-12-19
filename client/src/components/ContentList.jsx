@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Content from './Content'
+// import Content from './Content'
 import ContentForm from './ContentForm'
+import Content from './Content'
 
 const fetch = window.fetch
 
@@ -78,7 +79,12 @@ class ContentList extends Component {
     if (this.state.dataLoaded) {
       console.log(this, 'this is from rendercontentlist')
       return this.state.content.map(content => {
-        return <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
+          return (
+            <div>
+                  <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
+                  <Content key={content.id} content={content} auth={this.state.auth} deleteContent={this.deleteContent} />
+            </div>
+                )
       })
     } else return <p>Loading...</p>
   }
