@@ -30,7 +30,7 @@ class ContentList extends Component {
      .then(res => {
        console.log(res)
        this.setState({
-         content: res.data,
+         content: res.data.content,
          dataLoaded: true
        })
      }).catch(err => console.log(err))
@@ -76,6 +76,7 @@ class ContentList extends Component {
 
   renderContentList () {
     if (this.state.dataLoaded) {
+      console.log(this, 'this is from rendercontentlist')
       return this.state.content.map(content => {
         return <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
       })
