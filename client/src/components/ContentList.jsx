@@ -81,13 +81,19 @@ class ContentList extends Component {
       return this.state.content.map(content => {
         return (
           <div>
-            <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} />
-            {this.auth
+            {/* <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} /> */}
+            <h1>{content.title}</h1>
+            <h4>{content.description}</h4>
+            <img src={content.url} width="400px"/>
+            <br/>
+            <button className='edit' onClick={() => this.setEditing(content.id)}>edit</button>
+            <button className='delete' onClick={() => this.deleteContent(content.id)}>delete</button>
+            {/* {this.auth
               ? <div className='icon'>
-                <span className='edit' onClick={() => this.setEditing(content.id)}><i className='fa fa-pencil fa-fw fa-lg cursor' /></span>
-                <span className='delete' onClick={() => this.deleteContent(content.id)}><i className='fa fa-trash fa-fw fa-lg cursor' /></span>
+                <button className='edit' onClick={() => this.setEditing(content.id)}>edit</button>
+                <button className='delete' onClick={() => this.deleteContent(content.id)}>delete</button>
               </div>
-              : ''}
+              : ''} */}
           </div>
         )
       })
@@ -97,11 +103,11 @@ class ContentList extends Component {
   render () {
     return (
       <div className='contentList'>
-        {this.state.auth
-          ? <ContentForm isAdd handleFormSubmit={this.handleFormSubmit} />
-          : ''}
+
+          <ContentForm handleFormSubmit={this.handleFormSubmit} getAllContent={this.getAllContent} />
+
         {this.renderContentList()}
-        <input type='submit' value='Submit' />
+
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-class ContentForm extends Component {
+class Editform extends Component {
   constructor (props) {
     super(props)
     this.state = {
@@ -20,10 +20,10 @@ class ContentForm extends Component {
     })
   }
 
-  handleFormSubmit (e) {
+  handleFormSubmit (e, id) {
     e.preventDefault()
-    fetch(`/api/content`, {
-      method: 'POST',
+    fetch(`/api/content/${id}`, {
+      method: 'PUT',
       credentials: 'include',
       headers: {
         'Content-Type': 'application/json'
@@ -33,13 +33,23 @@ class ContentForm extends Component {
    .then(res => res.json())
    .then(res => {
      console.log(res)
-     this.props.getAllContent()
+     return res
    }).catch(err => console.log(err))
   }
+  // editContent (id) {
+  //   fetch(`/api/content/${id}`, {
+  //     method: 'PUT',
+  //     credentials: 'include'
+  //   }).then(res => res.json())
+  //     .then(res => {
+  //       console.log(res)
+  //     }).catch(err => console.log(err)
+  //   )
+  // }
 
   render () {
     return (
-      <form onSubmit={this.handleFormSubmit}>
+      <form onSubmit={this.handleFormSubmit(e,this.state)}>
         <input type='text' name='title' placeholder='title' value={this.state.title} onChange={this.handleChange} />
         <input type='text' name='description' placeholder='description' value={this.state.description} onChange={this.handleChange} />
         <input type='url' name='url' placeholder='img' value={this.state.genre} onChange={this.handleChange} />
