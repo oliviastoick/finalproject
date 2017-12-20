@@ -84,8 +84,8 @@ class ContentList extends Component {
             {/* <ContentForm content={content} handleFormSubmit={this.handleFormSubmit} isAdd={false} key={content.id} /> */}
             <h1>{content.title}</h1>
             <h4>{content.description}</h4>
-            <img src={content.url} width="400px"/>
-            <br/>
+            <img src={content.url} width='400px' />
+            <br />
             <button className='edit' onClick={() => this.setEditing(content.id)}>edit</button>
             <button className='delete' onClick={() => this.deleteContent(content.id)}>delete</button>
             {/* {this.auth
@@ -104,7 +104,7 @@ class ContentList extends Component {
     return (
       <div className='contentList'>
 
-          <ContentForm handleFormSubmit={this.handleFormSubmit} getAllContent={this.getAllContent} />
+        <ContentForm handleFormSubmit={this.handleFormSubmit} getAllContent={this.getAllContent} />
 
         {this.renderContentList()}
 
